@@ -37,9 +37,26 @@ jobs:
       - name: Build
         run: go build -o windows/rubixgoplatform.exe
         
-  build_mac:
+  build_mac_AMD64:
 
     runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: 1.17
+          
+      - name: Install dependencies
+        run: go get .
+
+      - name: Build
+        run: go build -o mac/rubixgoplatform_amd64
+  
+  build_mac_ARM64:
+
+    runs-on: [macos-latest, ARM64]
     steps:
       - uses: actions/checkout@v3
 
