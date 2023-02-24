@@ -1,4 +1,4 @@
-name: Go package
+name: Linux_workflow
 
 on: [push]
 
