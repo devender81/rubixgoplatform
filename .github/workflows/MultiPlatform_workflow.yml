@@ -20,6 +20,11 @@ jobs:
 
       - name: Build
         run: go build -o linux/rubixgoplatform
+        
+      - uses: actions/upload-artifact@v3
+        with:
+         name: linux-artifact
+         path: linux/
 
  build_windows:
 
@@ -38,6 +43,11 @@ jobs:
       - name: Build
         run: go build -o windows/rubixgoplatform.exe
         
+      - uses: actions/upload-artifact@v3
+        with:
+         name: windows-artifact
+         path: windows/
+        
  build_mac_AMD64:
 
     runs-on: macos-latest
@@ -54,6 +64,11 @@ jobs:
 
       - name: Build
         run: go build -o mac/rubixgoplatform_amd64
+        
+      - uses: actions/upload-artifact@v3
+        with:
+         name: mac_amd_artifact
+         path: mac/
  
  build_mac_ARM64:
 
@@ -71,5 +86,10 @@ jobs:
 
       - name: Build
         run: go build -o mac/rubixgoplatform_arm64
+        
+      - uses: actions/upload-artifact@v3
+        with:
+         name: mac_arm_artifact
+         path: mac/
 
 
