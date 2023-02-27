@@ -19,3 +19,7 @@ jobs:
 
       - name: Build
         run: go build -o windows/rubixgoplatform.exe
+        
+      - uses: actions/upload-artifact@v3
+        with:
+         path: windows/
