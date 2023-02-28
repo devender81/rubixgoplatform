@@ -1,6 +1,6 @@
 name: Windows_workflow
 
-on: [push]
+on: [push, pull_request]
 
 jobs:
   build:
@@ -14,6 +14,16 @@ jobs:
         with:
           go-version: 1.17
           
+      - name: Cache Go modules
+        uses: actions/cache@preview
+        with:
+          path: ~/go/pkg/mod
+          key: ${{ runner.os }}-build-${{ hashFiles('**/go.sum') }}
+		      restore-keys: |
+            ${{ runner.OS }}-build-${{ env.cache-name }}-
+            ${{ runner.OS }}-build-
+            ${{ runner.OS }}
+            
       - name: Install dependencies
         run: go get .
 
