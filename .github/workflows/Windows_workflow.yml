@@ -19,10 +19,10 @@ jobs:
         with:
           path: ~/go/pkg/mod
           key: ${{ runner.os }}-build-${{ hashFiles('**/go.sum') }}
-		      restore-keys: |
+          restore-keys: |
             ${{ runner.OS }}-build-${{ env.cache-name }}-
             ${{ runner.OS }}-build-
-            ${{ runner.OS }}
+            ${{ runner.OS }}-
             
       - name: Install dependencies
         run: go get .
