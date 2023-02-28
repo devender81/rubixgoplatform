@@ -24,17 +24,9 @@ jobs:
         with:
          path: windows/
          
-      - name: Get Token
-        id: get_workflow_token
-        uses: peter-murray/workflow-application-token-action@v1
-        with:
-          application_id: ${{ secrets.APPLICATION_ID }}
-          application_private_key: ${{ secrets.APPLICATION_PRIVATE_KEY }}
-          
-      - name: Use Application Token to create a release
-        uses: actions/create-release@v1
+      - uses: elgohr/Github-Release-Action@v4
         env:
-          GITHUB_TOKEN: ${{ steps.get_workflow_token.outputs.token }}
+         GITHUB_TOKEN: ${{ secrets.actions }}
         with:
          title: MyReleaseMessage
-      
+
