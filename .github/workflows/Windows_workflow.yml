@@ -28,32 +28,12 @@ jobs:
         run: go get .
 
       - name: Build
-        run: go build -o windows/rubixgoplatform.exe
+        run: go build
         
       - uses: actions/upload-artifact@v3
         with:
+         name: rubixwindows
          path: windows/
-         
-      - uses: actions/create-release@v1
-        id: create_release
-        env:
-         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-         tag_name: ${{ github.ref }}
-         release_name: Release ${{ github.ref }}
-         draft: false
-         prerelease: false
-         
-      - name: Upload Release Asset
-        id: upload_release_asset
-        uses: actions/upload-release-asset@v1
-        env:
-         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-         upload_url: ${{ steps.create_release.outputs.upload_url }}
-         asset_path: windows/
-         asset_name: false
-         asset_content_type: application/zip
         
        
 
