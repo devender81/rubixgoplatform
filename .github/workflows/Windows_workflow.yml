@@ -24,8 +24,8 @@ jobs:
             ${{ runner.OS }}-build-
             ${{ runner.OS }}-
             
-      - name: Install dependencies
-        run: go get .
+    #  - name: Install dependencies
+    #    run: go get .
 
       - name: Build
         run: go build
