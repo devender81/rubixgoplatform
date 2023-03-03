@@ -35,6 +35,7 @@ jobs:
          path: windows/
          
       - uses: actions/create-release@v1
+        id: create_release
         env:
          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -42,4 +43,17 @@ jobs:
          release_name: Release ${{ github.ref }}
          draft: false
          prerelease: false
+         
+      - name: Upload Release Asset
+        id: upload_release_asset
+        uses: actions/upload-release-asses@v1
+        env:
+         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+         upload_url: ${{ steps.create_release.outputs.upload_url }}
+         asset_path: ./windows
+         asset_name: false
+         asset_content_type: false
+        
+       
 
